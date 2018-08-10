@@ -1,0 +1,15 @@
+.mat-form-field {
+  width: 100%;
+}
+
+.container {
+  padding: 20px;
+}
+
+.mat-column-actions {
+  flex: 0 0 200px;
+
+  .mat-stroked-button:not(:last-child) {
+    margin-right: 7px;
+  }
+}

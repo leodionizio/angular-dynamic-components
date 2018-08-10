@@ -1,0 +1,27 @@
+<div class="container mat-elevation-z3" *ngIf="dataSource">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite aqui para buscar...">
+  </mat-form-field>
+
+  <mat-table #table [dataSource]="dataSource" matSort [ngStyle]="{'height.px': height}">
+
+    <ng-container [matColumnDef]="column['key']" *ngFor="let column of columns">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column['text'] }} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[column['key']]}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="primary" (click)="edit(element)">Editar</button>
+        <button mat-stroked-button color="warn" (click)="delete(element)">Excluir</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
