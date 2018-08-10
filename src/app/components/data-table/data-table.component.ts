@@ -48,10 +48,14 @@ export class DataTableComponent implements AfterViewInit {
   @Input()
   set setData(data: any[]) {
     if (data.length) {
+      const sameLength = Object.keys(data[0]).length=== this.columnNames.length;
+
       Object.keys(data[0]).map((key, index) => {
         this.displayedColumns.push(key);
-
-        this.columns.push({ key: key, text: this.columnNames[index] });
+        this.columns.push({
+          key: key,
+          text: sameLength ? this.columnNames[index] : key
+        });
       });
     }
 
